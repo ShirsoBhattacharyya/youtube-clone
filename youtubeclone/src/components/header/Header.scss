@@ -1,0 +1,83 @@
+@import '../../base.scss';
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    background-color: $black-primary;
+    height:10vh;
+    width:100%;
+}
+.header-menu{
+    margin-right:10px;
+    display: none;
+}
+.header-logo{
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    display: block;
+}
+form{
+    flex:0.55;
+    display:flex;
+    padding: 0.1rem;
+    margin:0.1rem;
+    border-radius: 3px;
+    border: 1.2px solid;
+    background-color: $black-secondary;
+
+    input{
+        background-color: transparent;
+        border:none;
+        width:100%;
+        font-weight: 500;
+        padding: 0.3rem;
+        color:$text-color;
+        &:focus{
+            outline: none;
+        }
+    }
+    button{
+        padding: 0 1.25rem;
+        color: $text-color;
+        background-color: transparent;
+        border: none;
+        &:focus{
+            border: none;
+        }
+    }
+    
+}
+.header-icons{
+    flex:0.15;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    img{
+        border-radius: 50%;
+        width:40px;
+        object-fit: contain;
+        margin-left: 5px;
+    }
+}
+
+@media (max-width: $breakpoint-small){
+    .header{
+        padding: 1rem;
+        form{
+            flex:1;
+        }
+    }
+    .header-menu{
+        display:block;
+    }
+    .header-logo{
+        display:none;
+    }
+    //basically all the icons are hidden except the image using this *:not() to specifically keep img tag as an exception.
+    .header-icons>*:not(img){
+        display:none;
+    }
+}
