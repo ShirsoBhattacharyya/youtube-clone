@@ -1,0 +1,29 @@
+@import '../../base.scss';
+.categories{
+   width:95% !important;
+   padding:0.5rem 0;
+   font-size: 0.8rem;
+   display: flex;
+   overflow-x: scroll;
+   object-fit: contain;
+   gap:1rem;
+   &::-webkit-scrollbar{
+    width: 0px;
+   }
+   scrollbar-width: none;
+   span{
+    padding:0.5rem;
+    white-space: nowrap;
+    border: 1.5px solid $text-color;
+    border-radius: 999px;
+    &:hover{
+        background-color: #374a59;
+    }
+    &.active{
+        color:#fff;
+        background-color: #606060;
+        border-color: $border-color;
+    }
+   }
+    
+}

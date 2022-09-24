@@ -7,11 +7,13 @@ const Home = () => {
   return (
     <Container>
         <Categories/>
-        <Row>
-            {
-                [...new Array(20)].map(()=><Col lg={3} md={4}><Video/></Col>)
-            }
-        </Row>
+        <div style={{width:'95%'}}>
+          <Row>
+              {
+                  [...new Array(20)].map(()=><Col lg={3} md={4}><Video/></Col>)
+              }
+          </Row>
+        </div>
     </Container>
   )
 }

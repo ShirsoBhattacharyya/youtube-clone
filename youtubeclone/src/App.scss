@@ -1,4 +1,7 @@
-.container{
+@import './base.scss';
+
+.app-container{
     display: flex;
     height:90vh;
+    width:100%;
 }
