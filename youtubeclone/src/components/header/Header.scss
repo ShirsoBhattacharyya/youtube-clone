@@ -8,63 +8,66 @@
     background-color: $black-primary;
     height:10vh;
     width:100%;
-}
-.header-menu{
-    // display: none;
-    padding:3px;
-    cursor:pointer;
-}
-.header-logo{
-    width: 100px;
-    height: 50px;
-    object-fit: contain;
-    display: block;
-    cursor:pointer;
-}
-form{
-    flex:0.5;
-    display:flex;
-    padding: 0.1rem;
-    margin:0.1rem;
-    border-radius: 3px;
-    border: 1.2px solid;
-    background-color: $black-secondary;
-
-    input{
-        background-color: transparent;
-        border:none;
-        width:100%;
-        font-weight: 500;
-        padding: 0.3rem;
-        color:$text-color;
-        &:focus{
-            outline: none;
-        }
+    z-index:999;
+    &-menu{
+        // display: none;
+        padding:3px;
+        cursor:pointer;
     }
-    button{
-        padding: 0 1.25rem;
-        color: $text-color;
-        background-color: transparent;
-        border: none;
-        &:focus{
-            border: none;
-        }
-    }
-    
-}
-.header-icons{
-    flex:0.15;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    cursor:pointer;
-    img{
-        border-radius: 50%;
-        width:40px;
+    &-logo{
+        width: 100px;
+        height: 50px;
         object-fit: contain;
-        margin-left: 5px;
+        display: block;
+        cursor:pointer;
+    }
+    form{
+        flex:0.5;
+        display:flex;
+        padding: 0.1rem;
+        margin:0.1rem;
+        border-radius: 3px;
+        border: 1.2px solid;
+        background-color: $black-secondary;
+    
+        input{
+            background-color: transparent;
+            border:none;
+            width:100%;
+            font-weight: 500;
+            padding: 0.3rem;
+            color:$text-color;
+            &:focus{
+                outline: none;
+            }
+        }
+        button{
+            padding: 0 1.25rem;
+            color: $text-color;
+            background-color: transparent;
+            border: none;
+            &:focus{
+                border: none;
+            }
+        }
+        
+    }
+    &-icons{
+        flex:0.15;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        cursor:pointer;
+        img{
+            border-radius: 50%;
+            width:40px;
+            object-fit: contain;
+            margin-left: 5px;
+        }
     }
 }
+
+
 
 @media (max-width: $breakpoint-small){
     .header{
@@ -72,15 +75,15 @@ form{
         form{
             flex:1;
         }
-    }
-    .header-menu{
-        margin-right: 5px;
-    }
-    .header-logo{
-        display:none;
-    }
-    //basically all the icons are hidden except the image using this *:not() to specifically keep img tag as an exception.
-    .header-icons>*:not(img){
-        display:none;
+        &-menu{
+            margin-right: 5px;
+        }
+        &-logo{
+            display:none;
+        }
+        //basically all the icons are hidden except the image using this *:not() to specifically keep img tag as an exception.
+        &-icons>*:not(img){
+            display:none;
+        }
     }
 }
