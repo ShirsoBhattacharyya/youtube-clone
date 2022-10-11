@@ -2,8 +2,14 @@ import React from 'react';
 import './Sidebar.scss';
 import {MdSubscriptions,MdExitToApp,MdOndemandVideo,MdThumbUp,MdHistory,MdHome,MdOutlineVideoLibrary,MdOutlineWatchLater,MdOutlineLightMode,MdOutlineDarkMode} from 'react-icons/md';
 import {FaCompass} from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../store/auth/auth.actions';
 
 const Sidebar = ({sidebar,handleToggleSidebar}) => {
+  const dispatch=useDispatch();
+  const handleLogout=()=>{
+    dispatch(logout());
+  }
   return (
     <div className={sidebar?"sidebar open":"sidebar"} onClick={()=>{handleToggleSidebar(false)}}>
       <li>
@@ -43,7 +49,7 @@ const Sidebar = ({sidebar,handleToggleSidebar}) => {
         <MdOutlineLightMode size={23}/>
         <span>Change theme</span>
       </li>
-      <li>
+      <li onClick={handleLogout}>
         <MdExitToApp size={23}/>
         <span>Sign out</span>
       </li>

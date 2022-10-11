@@ -5,8 +5,9 @@ import Video from '../../components/video/Video';
 
 const Home = () => {
   return (
-    <Container>
+    <Container style={{width:'95%'}}>
         <Categories/>
+        <hr className='bottomborder' style={{marginTop:'-0.01rem'}}/>
         <div style={{width:'95%'}}>
           <Row>
               {

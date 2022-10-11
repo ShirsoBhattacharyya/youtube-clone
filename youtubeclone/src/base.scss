@@ -21,3 +21,14 @@ body{
     font-family: 'Roboto',sans-serif;
     letter-spacing: 0.1px;
 }
+::-webkit-scrollbar{
+    width:12px;
+    height:100%;
+}
+::-webkit-scrollbar-thumb{
+    background: $border-color;
+    border-radius:8px;
+}
+::-webkit-scrollbar-track{
+    background: $black-secondary;
+}
