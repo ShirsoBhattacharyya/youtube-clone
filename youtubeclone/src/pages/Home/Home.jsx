@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import Categories from '../../components/categories/Categories';
 import Video from '../../components/video/Video';
+import { getPopularVideos } from '../../store/videos/videos.actions';
 
 const Home = () => {
+  const dispatch=useDispatch();
+  const {videos}=useSelector(store=>store.homeVideos)
+  useEffect(()=>{
+    dispatch(getPopularVideos())
+  },[dispatch]);
   return (
     <Container style={{width:'95%'}}>
         <Categories/>
@@ -11,7 +18,7 @@ const Home = () => {
         <div style={{width:'95%'}}>
           <Row>
               {
-                  [...new Array(20)].map(()=><Col lg={3} md={4}><Video/></Col>)
+                  videos.map((video)=><Col lg={3} md={4} key={video.id}><Video video={video}/></Col>)
               }
           </Row>
         </div>

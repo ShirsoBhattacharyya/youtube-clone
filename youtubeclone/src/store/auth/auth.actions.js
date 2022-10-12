@@ -7,7 +7,9 @@ import { LOAD_PROFILE, LOGIN_FAILED, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT } from
 export const login=()=>async dispatch=>{
     dispatch({type:LOGIN_REQUEST})
     try{
-        const provider=new firebase.auth.GoogleAuthProvider()
+        const provider=new firebase.auth.GoogleAuthProvider();
+        //adding this scope ensures that google actually permits us to add,edit and delete comments
+        provider.addScope('https://www.googleapis.com/auth/youtube.force-ssl');
         const res=await auth.signInWithPopup(provider);
         console.log(res);
         const accessToken=res.credential.accessToken;

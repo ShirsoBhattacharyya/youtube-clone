@@ -1,29 +1,66 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Video.scss';
 import {AiFillEye} from 'react-icons/ai';
+import request from '../../api';
+import moment from 'moment/moment';
+import numeral from 'numeral';
 
-const Video = () => {
+const Video = ({video}) => {
+  const {id,snippet:{channelId,channelTitle,title,publishedAt,thumbnails:{medium}}}=video;
+  const [views,setViews]=useState(null);
+  const [duration,setDuration]=useState(null);
+  const [channelIcon,setChannelIcon]=useState(null)
+  const seconds=moment.duration(duration).asSeconds();
+  const milliseconds=moment.utc(seconds*1000).format('mm:ss');
+
+  //writing the following useEffect to manage inconsistent userdata
+  useEffect(()=>{
+    const getVideoDetails=async()=>{
+        const res=await request.get('/videos',{
+          params:{
+            part:'contentDetails,statistics',
+            id:id
+          }
+        })
+        setDuration(res.data.items[0].contentDetails.duration)
+        setViews(res.data.items[0].statistics.viewCount)
+    }
+    getVideoDetails();
+  },[id])
+  //writing another similar useeffect to get the channel icons
+  useEffect(()=>{
+    const getChannelIcons=async()=>{
+        const res=await request.get('/channels',{
+          params:{
+            part:'snippet',
+            id:channelId
+          }
+        })
+        setChannelIcon(res.data.items[0].snippet.thumbnails.default)
+    }
+    getChannelIcons();
+  },[channelId])
   return (
     <div>
       <div className="video">
         <div className="video-top">
-          <img src="https://i.ytimg.com/vi/G4JuopziR3Q/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC4KNSahRhXrS_RTsln0HovEDjICg" alt="thumbnail" />
-          <span>02:45</span>
+          <img src={medium.url} alt="thumbnail" />
+          <span>{milliseconds}</span>
         </div>
         <div className="video-title">
-          Exclusive Clip | Loki | Disney+
+          {title}
         </div>
         <div className="video-details">
           <span>
-            <AiFillEye/> 12m views •{" "}
+            <AiFillEye/> {numeral(views).format('0.a')} views •{" "}
           </span>
           <span>
-            6 days ago
+            {moment(publishedAt).fromNow()}
           </span>
         </div>
         <div className="video-channel">
-          <img src="https://yt3.ggpht.com/fGvQjp1vAT1R4bAKTFLaSbdsfdYFDwAzVjeRVQeikH22bvHWsGULZdwIkpZXktcXZc5gFJuA3w=s68-c-k-c0x00ffffff-no-rj" alt="channel-logo" />
-          <p>Marvel Entertainment</p>
+          <img src={channelIcon?.url} alt="channel-logo" />
+          <p>{channelTitle}</p>
         </div>
       </div>
     </div>
