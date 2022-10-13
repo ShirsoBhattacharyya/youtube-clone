@@ -3,7 +3,8 @@ import { HOME_VIDEOS_FAILED, HOME_VIDEOS_REQUEST, HOME_VIDEOS_SUCCESS } from "./
 const initialState={
     videos:[],
     loading:false,
-    nextPageToken:null
+    nextPageToken:null,
+    activeCategory:'All'
 }
 export const homeVideosReducer=(state=initialState,{type,payload})=>{
     switch(type){
@@ -14,7 +15,10 @@ export const homeVideosReducer=(state=initialState,{type,payload})=>{
         }
         case HOME_VIDEOS_SUCCESS:{
             return {
-                ...state,videos:payload.videos,loading:false,nextPageToken:payload.nextPageToken
+                ...state,videos:state.activeCategory===payload.category?[...state.videos,...payload.videos]:payload.videos,
+                loading:false,
+                nextPageToken:payload.nextPageToken,
+                activeCategory:payload.category
             }
         }
         case HOME_VIDEOS_FAILED:{

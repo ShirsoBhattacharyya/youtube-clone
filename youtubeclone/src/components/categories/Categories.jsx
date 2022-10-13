@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getPopularVideos, getVideosByCategory } from '../../store/videos/videos.actions';
 import './Categories.scss';
 
 const Categories = () => {
@@ -23,8 +25,14 @@ const Categories = () => {
     'Shwetabh'
  ];
   const [activeElement,setActiveElement]=useState('All');
+  const dispatch=useDispatch();
   const handleClick=(el)=>{
-    setActiveElement(el)
+    setActiveElement(el);
+    if(el==="All"){
+      dispatch(getPopularVideos())
+    }else{
+      dispatch(getVideosByCategory(el))
+    }
   }
   return (
     <div className='categories'>

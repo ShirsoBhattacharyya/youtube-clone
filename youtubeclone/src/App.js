@@ -14,13 +14,13 @@ const Layout=({children})=>{
     setSidebar(value=>!value);
   }
   return (
-    <div style={{width:'100%'}}>
+    <div>
       <Header handleToggleSidebar={handleToggleSidebar}/>
       <div className='app-container'>
         <div>
           <Sidebar sidebar={sidebar} handleToggleSidebar={handleToggleSidebar}/>
         </div>
-        <Container className='main'>
+        <Container fluid className='app-main'>
           {children}
         </Container>
       </div>

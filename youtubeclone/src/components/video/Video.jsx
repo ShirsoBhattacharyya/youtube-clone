@@ -12,21 +12,22 @@ const Video = ({video}) => {
   const [channelIcon,setChannelIcon]=useState(null)
   const seconds=moment.duration(duration).asSeconds();
   const milliseconds=moment.utc(seconds*1000).format('mm:ss');
-
+  //this was a tricky part. I ended up seeing that the id key was an object in case of category section in the api but is a string in case of most popular videos.
+  const videoId=id?.videoId||id;
   //writing the following useEffect to manage inconsistent userdata
   useEffect(()=>{
     const getVideoDetails=async()=>{
         const res=await request.get('/videos',{
           params:{
             part:'contentDetails,statistics',
-            id:id
+            id:videoId
           }
         })
         setDuration(res.data.items[0].contentDetails.duration)
         setViews(res.data.items[0].statistics.viewCount)
     }
     getVideoDetails();
-  },[id])
+  },[videoId])
   //writing another similar useeffect to get the channel icons
   useEffect(()=>{
     const getChannelIcons=async()=>{

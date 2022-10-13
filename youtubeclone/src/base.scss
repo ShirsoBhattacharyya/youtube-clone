@@ -24,11 +24,6 @@ body{
 ::-webkit-scrollbar{
     width:12px;
     height:100%;
+    display:none;
 }
-::-webkit-scrollbar-thumb{
-    background: $border-color;
-    border-radius:8px;
-}
-::-webkit-scrollbar-track{
-    background: $black-secondary;
-}
+
