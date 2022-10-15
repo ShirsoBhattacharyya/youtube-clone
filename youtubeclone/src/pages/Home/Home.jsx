@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Categories from '../../components/categories/Categories';
 import Video from '../../components/video/Video';
 import { getPopularVideos,getVideosByCategory } from '../../store/videos/videos.actions';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import VideoSkeleton from '../../components/skeletons/VideoSkeleton';
 
 const Home = () => {
   const dispatch=useDispatch();
@@ -33,7 +34,10 @@ const Home = () => {
             }
             className='row'>
               {
-                  videos.map((video)=><Col lg={3} md={4}><Video video={video} key={video.id}/></Col>)
+                !loading ?
+                 videos.map((video)=><Col lg={3} md={4}><Video video={video} key={video.id}/></Col>)
+                :
+                [...Array(20)].map(()=><Col lg={3} md={4}><VideoSkeleton/></Col>)
               }
             </InfiniteScroll>
         </div>
