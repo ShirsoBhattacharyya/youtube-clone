@@ -8,6 +8,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import {Routes,Route, Navigate, useNavigate} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import WatchScreen from './pages/WatchScreen/WatchScreen';
+import SearchResults from './pages/searchResults/SearchResults';
 
 const Layout=({children})=>{
   const [sidebar,setSidebar]=useState(false);
@@ -40,7 +41,7 @@ const App=()=>{
     <Routes>
       <Route path='/' element={<Layout><Home/></Layout>}/>
       <Route path='/auth' element={<LoginPage/>}/>
-      <Route path='/search' element={<Layout><h1>Search Results</h1></Layout>}/>
+      <Route path='/search/:query' element={<Layout><SearchResults/></Layout>}/>
       <Route path='/watch/:id' element={<Layout><WatchScreen/></Layout>}/>
       <Route path="*" element={<Navigate to='/'/>}/>
     </Routes>
