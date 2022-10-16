@@ -6,7 +6,7 @@ import {MdNotifications,MdApps} from 'react-icons/md';
 import {BiVideoPlus} from 'react-icons/bi';
 import youtube from '../../assets/pngs/youtube_logo_dark.png';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Header = ({handleToggleSidebar}) => {
   const [input, setInput] = useState('');
@@ -20,7 +20,9 @@ const Header = ({handleToggleSidebar}) => {
     <div className='border border-dark header'>
       <div style={{display:'flex',gap:'1.6rem',alignItems:'center'}}>
         <FaBars className='header-menu' size={26} onClick={()=>handleToggleSidebar()}/>
-        <img src={youtube} alt="youtube" className="header-logo" />
+        <Link to='/'>
+          <img src={youtube} alt="youtube" className="header-logo" />
+        </Link>
       </div>
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder='Search' value={input} onChange={e => setInput(e.target.value)}/>
@@ -32,7 +34,7 @@ const Header = ({handleToggleSidebar}) => {
         <BiVideoPlus size={28}/>
         <MdNotifications size={28}/>
         <MdApps size={28}/>
-        <img src={user?.photoURL} alt="user-avatar" />
+        <img src={`${user?.photoURL}`} alt="user-avatar" />
       </div>
     </div>
   )

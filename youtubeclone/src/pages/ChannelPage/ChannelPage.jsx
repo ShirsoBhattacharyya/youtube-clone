@@ -46,7 +46,7 @@ const ChannelPage = () => {
                   : [...Array(15)].map(() => (
                        <Col md={3} lg={3}>
                           <SkeletonTheme
-                             color='#343a40'
+                             baseColor='#343a40'
                              highlightColor='#3c4147'>
                              <Skeleton width='100%' height='140px' />
                           </SkeletonTheme>

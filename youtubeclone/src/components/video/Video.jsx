@@ -5,16 +5,18 @@ import request from '../../api';
 import moment from 'moment/moment';
 import numeral from 'numeral';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useNavigate } from 'react-router-dom';
 
-const Video = ({video}) => {
-  const {id,snippet:{channelId,channelTitle,title,publishedAt,thumbnails:{medium}}}=video;
+const Video = ({video,channelScreen}) => {
+  const {id,snippet:{channelId,channelTitle,title,publishedAt,thumbnails:{medium}},contentDetails}=video;
   const [views,setViews]=useState(null);
   const [duration,setDuration]=useState(null);
   const [channelIcon,setChannelIcon]=useState(null)
   const seconds=moment.duration(duration).asSeconds();
+  const navigate=useNavigate();
   const milliseconds=moment.utc(seconds*1000).format('mm:ss');
   //this was a tricky part. I ended up seeing that the id key was an object in case of category section in the api but is a string in case of most popular videos.
-  const videoId=id?.videoId||id;
+  const videoId=id?.videoId||contentDetails?.videoId||id;
   //writing the following useEffect to manage inconsistent userdata
   useEffect(()=>{
     const getVideoDetails=async()=>{
@@ -42,9 +44,12 @@ const Video = ({video}) => {
     }
     getChannelIcons();
   },[channelId])
+  const handleVideoClick = () => {
+    navigate(`/watch/${videoId}`)
+ }
   return (
     <div>
-      <div className="video">
+      <div className="video" onClick={handleVideoClick}>
         <div className="video-top">
           {/* <img src={medium.url} alt="thumbnail" /> */}
           <LazyLoadImage src={medium.url} alt="thumbnail" effect='blur'/>
@@ -61,11 +66,12 @@ const Video = ({video}) => {
             {moment(publishedAt).fromNow()}
           </span>
         </div>
-        <div className="video-channel">
+        {!channelScreen && (<div className="video-channel">
           {/* <img src={channelIcon?.url} alt="channel-logo" /> */}
           <LazyLoadImage src={channelIcon?.url} alt="channel-logo" effect='blur'/>
           <p>{channelTitle}</p>
         </div>
+        )}
       </div>
     </div>
   )

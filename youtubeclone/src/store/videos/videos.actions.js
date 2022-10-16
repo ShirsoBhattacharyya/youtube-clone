@@ -139,7 +139,6 @@ export const getVideosBySearch = keyword => async dispatch => {
        const { data } = await request('/subscriptions', {
           params: {
              part: 'snippet,contentDetails',
- 
              mine: true,
           },
           headers: {

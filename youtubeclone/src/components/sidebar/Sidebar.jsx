@@ -4,6 +4,7 @@ import {MdSubscriptions,MdExitToApp,MdOndemandVideo,MdThumbUp,MdHistory,MdHome,M
 import {FaCompass} from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../store/auth/auth.actions';
+import { Link } from 'react-router-dom'
 
 const Sidebar = ({sidebar,handleToggleSidebar}) => {
   const dispatch=useDispatch();
@@ -12,18 +13,22 @@ const Sidebar = ({sidebar,handleToggleSidebar}) => {
   }
   return (
     <div className={sidebar?"sidebar open":"sidebar"} onClick={()=>{handleToggleSidebar(false)}}>
-      <li>
-        <MdHome size={23}/>
-        <span>Home</span>
-      </li>
+      <Link to='/'>
+        <li>
+          <MdHome size={23}/>
+          <span>Home</span>
+        </li>
+      </Link>
       <li>
         <FaCompass size={23}/>
         <span>Explore</span>
       </li>
-      <li>
-        <MdSubscriptions size={23}/>
-        <span>Subscriptions</span>
-      </li>
+      <Link to='/feed/subscriptions'>
+        <li>
+          <MdSubscriptions size={23}/>
+          <span>Subscriptions</span>
+        </li>
+      </Link>
       <li>
         <MdThumbUp size={23}/>
         <span>Liked Videos</span>
