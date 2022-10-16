@@ -1,4 +1,4 @@
-import { HOME_VIDEOS_FAILED, HOME_VIDEOS_REQUEST, HOME_VIDEOS_SUCCESS } from "./videos.action.types"
+import { HOME_VIDEOS_FAILED, HOME_VIDEOS_REQUEST, HOME_VIDEOS_SUCCESS, RELATED_VIDEO_FAILED, RELATED_VIDEO_REQUEST, RELATED_VIDEO_SUCCESS, SELECTED_VIDEO_FAILED, SELECTED_VIDEO_REQUEST, SELECTED_VIDEO_SUCCESS } from "./videos.action.types"
 import request from "../../api";
 // GET https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&key=[YOUR_API_KEY] HTTP/1.1
 
@@ -52,3 +52,52 @@ export const getVideosByCategory=(keyword)=>async (dispatch,getState)=>{
         dispatch({type:HOME_VIDEOS_FAILED,payload:e.message})
     }
 }
+
+export const getVideoById =(id)=> async (dispatch)=> {
+    try {
+       dispatch({type: SELECTED_VIDEO_REQUEST})
+       const res = await request.get('/videos', {
+          params: {
+             part: 'snippet,statistics',
+             id: id,
+            },
+        })
+       dispatch({
+          type: SELECTED_VIDEO_SUCCESS,
+          payload: res.data.items[0],
+       })
+    } catch (e) {
+       console.log(e.message)
+       dispatch({
+          type: SELECTED_VIDEO_FAILED,
+          payload: e.message,
+       })
+    }
+}
+
+export const getRelatedVideos=(id)=> async (dispatch) => {
+    try {
+       dispatch({
+          type: RELATED_VIDEO_REQUEST,
+       })
+ 
+       const { data } = await request('/search', {
+          params: {
+             part: 'snippet',
+             relatedToVideoId: id,
+             maxResults: 15,
+             type: 'video',
+          },
+       })
+       dispatch({
+          type: RELATED_VIDEO_SUCCESS,
+          payload: data.items,
+       })
+    } catch (error) {
+       console.log(error.response.data.message)
+       dispatch({
+          type: RELATED_VIDEO_FAILED,
+          payload: error.response.data.message,
+       })
+    }
+ }
