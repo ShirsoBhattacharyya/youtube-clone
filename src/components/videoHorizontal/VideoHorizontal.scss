@@ -1,0 +1,95 @@
+@import '../../base.scss';
+
+.videoHorizontal {
+    border-bottom: 0.3px solid $border-color;
+    cursor: pointer;
+    &-left {
+      position: relative;
+      text-align: center;
+      padding-left: 0 !important;
+    }
+    &-thumbnail {
+        width: 100%;
+        &-channel {
+            width: 50%;
+            border-radius: 50%;
+        }
+        &-wrapper {
+            width: 100%;
+        }
+    }
+    &-duration {
+        position: absolute;
+        bottom: 0.6rem;
+        right: 1.2rem;
+        font-size: 0.9rem;
+        padding: 0.2rem;
+        background: #080808ec;
+        border-radius: 3px;
+    }
+    &-details {
+        font-size: 0.9rem;
+    }
+    &-title {
+        font-size: 0.95rem;
+        letter-spacing: 0.3px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    &-desc {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        font-size: 0.9rem;
+    }
+    &-channel {
+      img {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        margin-right: 0.5rem;
+        cursor: pointer;
+      }
+      p {
+        font-size: 0.9rem;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+      }
+   }
+}
+
+@media (max-width: $breakpoint-small) {
+   .videoHorizontal {
+      font-size: 0.8rem;
+      &-details {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+      }
+      &-channel {
+        margin: 0.1rem 0;
+        img {
+            display: none;
+        }
+        p {
+            font-size: 0.8rem;
+        }
+      }
+      &-desc {
+        display: none;
+      }
+      &-title {
+        font-size: 0.9rem;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+      }
+   }
+}
