@@ -7,14 +7,30 @@ name: Deploy to Firebase Hosting on merge
     branches:
       - 'main'
 jobs:
-  build_and_deploy:
-    runs-on: ubuntu-latest
+  deploy:
+    name: Build & Deployment
+    runs-on : ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - run: 'build'
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name : get the source code
+        uses: actions/checkout@v2
+
+      - name : install node
+        uses: actions/setup-node@v2
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_YT_CLONE_SHIRSO }}'
-          channelId: live
-          projectId: yt-clone-shirso
+            node-version: '16'
+
+      - name : install node packages
+        run: npm i
+
+      - name: Build
+        run: npm run build
+        env:
+          CI: false
+      
+      - name : Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN}}
