@@ -1,6 +1,52 @@
-# Getting Started with Create React App
+# Youtube Clone
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Summary
+YouTube is an American online video sharing and social media platform headquartered in San Bruno, California. It was launched on February 14, 2005, by Steve Chen, Chad Hurley, and Jawed Karim. It is owned by Google, and is the second most visited website, after Google Search.
+This is an attempt to further polish my React skills by trying to clone Youtube. I have tried my best to make it look as close to the original Youtube India page as possible.
+#### Deployment Link: https://yt-clone-shirso.web.app 
+
+## Screenshots
+- ### Home Page
+
+  ![Home Page](https://github.com/ShirsoBhattacharyya/youtube-clone/blob/main/src/assets/pngs/youtube_homepage.png?raw=true)
+  
+- ### Signin Page
+
+  ![Signin Page](https://github.com/ShirsoBhattacharyya/youtube-clone/blob/main/src/assets/pngs/youtube_loginpage.png?raw=true)
+  
+- ### Search Results Page
+
+  ![Search Results Page](https://github.com/ShirsoBhattacharyya/youtube-clone/blob/main/src/assets/pngs/youtube_searchresultspage.png?raw=true)
+  
+- ### Subscriptions Page
+
+  ![Subscriptions Page](https://github.com/ShirsoBhattacharyya/youtube-clone/blob/main/src/assets/pngs/youtube_subscriptionspage.png?raw=true)
+  
+- ### Channel Page
+
+  ![Channel Page](https://github.com/ShirsoBhattacharyya/youtube-clone/blob/main/src/assets/pngs/youtube_channelpage.png?raw=true)
+  
+- ### WatchScreen Page
+
+  ![WatchScreen Page](https://github.com/ShirsoBhattacharyya/youtube-clone/blob/main/src/assets/pngs/youtube_watchscreenpage.png?raw=true)  
+  
+- ### Comments Section Page
+
+  ![Comments Section Page](https://github.com/ShirsoBhattacharyya/youtube-clone/blob/main/src/assets/pngs/youtube_commentsection.png?raw=true)  
+  
+## Features
+
+- #### User search:
+    The user is able to search literally any video he wants. The input term is being taken from the search box via useState hook and dispatched via actions where in the reducer function the initialState is being updated and sent to the api after getting the term via the use of useSelector as a dynamic query parameter(q) through which relevant information is being fetched.
+    
+- #### Login with Google via Firebase Authentication:
+    This is the first time I successfully managed to implement login with Google via firebase. I did login with google previously via react-google-login and passport-js packages but this seemed the most challenging when it comes to navigating the documentation.
+
+- #### Fetching from API:
+    Through the usage of either fetch or axios, we can easily manage to fetch data from any api and append the data according to the way we want. I did insert a fetch function inside a useEffect hook to automatically generate live results from the api. In the api link, the api key(key which I stored inside an env folder to prevent expiry of the api) was the most important parameter.
+
+- #### Cross platform responsiveness:
+    The responsiveness of a website in various platforms ensure a great user experience throughout and makes any project a lot more impactful. I have ensured that this is taken care of as well in this project.  
 
 ## Available Scripts
 
