@@ -6,6 +6,7 @@ import Video from '../../components/video/Video';
 import { getPopularVideos,getVideosByCategory } from '../../store/videos/videos.actions';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import VideoSkeleton from '../../components/skeletons/VideoSkeleton';
+import HelmetCustom from '../../components/helmetCustom/HelmetCustom';
 
 const Home = () => {
   const dispatch=useDispatch();
@@ -21,6 +22,7 @@ const Home = () => {
   }
   return (
     <Container>
+        <HelmetCustom/>
         <Categories/>
         <hr className='bottomborder' style={{marginTop:'-0.01rem'}}/>
         <div>
