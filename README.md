@@ -48,6 +48,15 @@ This is an attempt to further polish my React skills by trying to clone Youtube.
 - #### Cross platform responsiveness:
     The responsiveness of a website in various platforms ensure a great user experience throughout and makes any project a lot more impactful. I have ensured that this is taken care of as well in this project.  
 
+## 🚀 About Me
+
+Hi, this is Shirso Bhattacharyya. I'm a full-stack MERN developer based in India. I've always enjoyed working on different projects to enhance my experience in developing various websites with varying features and functionalities. Please feel free to drop off a text for collaborations or even if you wanna just say 'hi'
+
+
+## Feedback
+
+If you have any feedback, please feel free to reach out to me at shirso369@gmail.com.
+
 ## Available Scripts
 
 In the project directory, you can run:
